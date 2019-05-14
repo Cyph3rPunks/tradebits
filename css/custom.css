@@ -1,0 +1,92 @@
+.mbfix {
+    margin-bottom: 15px !important;
+}
+
+.cotacao input {
+    width: 65px;
+    font-size: 11px;
+    border: 0;
+}
+
+.roi input {
+    font-size: 21px;
+    text-align: center;
+    border: 0;
+    width: 100px;
+}
+
+.green {
+    color: limegreen;
+}
+
+.red {
+    color: red;
+}
+
+
+/*table tbody, table thead*/
+/*{*/
+    /*display: block;*/
+/*}*/
+/*table tbody*/
+/*{*/
+    /*overflow: auto;*/
+    /*height: 300px;*/
+/*}*/
+
+/*.book-order {*/
+    /*max-height: 300px;*/
+    /*overflow-y: auto;*/
+/*}*/
+
+
+/*table.book-order tbody {*/
+    /*overflow: auto;*/
+    /*height: 500px;*/
+/*}*/
+
+body{
+    background-color: #131b15;
+}
+
+.logo{
+    font-family: 'Press Start 2P', cursive;
+}
+
+.card-header {
+    font-family: 'Press Start 2P', cursive;
+    background: #e7d05b;
+}
+
+#chart-container {
+    width: 100%;
+    height: 400px;
+  }
+
+  iframe {
+    width: 100%!important;
+}
+
+.chartsV h2{
+    color: #e7d05b;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.noBorder{
+    padding: 0px;
+    margin: 0px;
+}
+
+.chartsV .card .card-body {
+    background-image: url('../arbit.gif');
+    background-size: 70px;
+}
+
+.inDev {
+    background-image: url(../loading.gif);
+    height: 170px;
+    background-size: cover;
+    background-position: center -240px;
+}
+
+@media (max-width:768px){.onMobileNeedSpace{margin-bottom:20px}}
