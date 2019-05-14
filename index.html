@@ -4,13 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="IKJYu7O4PpWWk2qXze4QOhRLukQztezB77z5neXw">
-
-    
-
     <title>Trade Bits</title>
+
     <meta name="description" content="O Trade Bits, tem como foco auxiliar traders a realizarem suas arbitragens de maneira mais simples, informando sobre o mercado externo e capturando dados das exchanges brasileiras, para facilitar o giro entre as Exchanges que fazem parte do Grupo Bitcoin Banco">
     <meta name="og:title" property="og:title" content="Trade Bits - Dashboard dos Profissionais">
     <meta name="og:title" property="og:description" content="O Trade Bits, tem como foco auxiliar traders a realizarem suas arbitragens de maneira mais simples, informando sobre o mercado externo e capturando dados das exchanges brasileiras, para facilitar o giro entre as Exchanges que fazem parte do Grupo Bitcoin Banco">
@@ -19,46 +14,71 @@
     <meta name="robots" content="index, follow">
     <link href="http://tradebits.exchange" rel="canonical">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Scripts -->
+    
     <script src="js/app.js"></script>
     <script src="js/axios.js"></script>
-    
-    
+    <script type="text/javascript" src="https://static.cryptowat.ch/assets/scripts/embed.bundle.js"></script>
 
     <link rel="shortcut icon" href="arbit.gif" type="image/x-icon">
     <link rel="icon" href="arbit.gif" type="image/x-icon">
-
-    <!-- Fonts -->
-    
-    
-
-    <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/custom.css" rel="stylesheet">
-    <script type="text/javascript" src="https://static.cryptowat.ch/assets/scripts/embed.bundle.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
             <div class="container">
                 <a class="navbar-brand logo" href="index.html">
                     <img src="arbit.gif" style="width: 45px;">
                     <span>Trade Bits</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                <div class="menuOnMobile">
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" data-scroll="#config" class="target">
+                                    Configurações
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" data-scroll="#cotation" class="target">
+                                    Cotação
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" data-scroll="#cicle" class="target">
+                                    Ciclo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" data-scroll="#data" class="target">
+                                    Histórico de Preço
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" data-scroll="#donation" class="target">
+                                    Doações
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" data-scroll="#chartins" class="target">
+                                    Gráficos
+                                </a>
+                            </li>
+                        </ul>
+    
+                        <!-- Right Side Of Navbar -->
+                    </div>
                 </div>
+                
             </div>
         </nav>
 
@@ -67,121 +87,203 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row">
-                                <div class="col-md-6 onMobileNeedSpace">
-                                    <div class="card border-0 shadow-sm">
-                                        <div class="card-header">
-                                            Como Usar
-                                        </div>
-                                        <div class="card-body">
-                                            <ul>
-                                                <li>Adicione o valor que iniciára a rodada no Bloco ROI</li>
-                                                <li>Verifique se antes de inciar um ciclo os valores de ganho não estão negativos <br>isso pode afetar os seus ganhos</li>
-                                                <li>Acompanhe o giro e informe caso o valor de ganho não esteja de acordo com o seu giro, isso me ajuda a evoluir sempre!</li>
-                                            </ul>
-                                        </div>
+                            <div class="col-md-6 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Como Usar
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>
+                                                Configure os dados: <br>
+                                                <strong>Entrada de ciclo em BRL</strong>,
+                                                <strong>Taxa Ativa de Operação</strong>,
+                                                <strong>Taxa Passiva de Operação</strong>,
+                                                <strong>Taxa de Saque de Crypto</strong> e
+                                                <strong>Taxa de Saque de Brl</strong>
+
+                                            </li>
+                                            <li>Acompanhe o giro e informe caso o valor de ganho não esteja de acordo!</li>
+                                        </ul>
+                                        <strong> Bons Ganhos! </strong>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card border-0 shadow-sm">
-                                        <div class="card-header">
-                                            Configurações
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
+                            </div>
+                            <div class="col-md-6" id="config">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Configurações
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="card-text">
+                                                    Entrada de Ciclo
+                                                </span>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">R$</span>
+                                                            </div>
+                                                            <input type="number" min="1" max="120" class="form-control" placeholder="10.000,00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
                                                     <span class="card-text">
-                                                        Entrada de Ciclo
+                                                        Taxas
                                                     </span>
                                                     <br>
                                                     <div class="form-row">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-6">
+                                                            <small>Oferta Ativa</small>
                                                             <div class="input-group input-group-sm">
                                                                 <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">R$</span>
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
                                                                 </div>
-                                                                <input type="number" min="1" max="120" class="form-control" placeholder="10.000,00">
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.5%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <small>Oferta Passiva</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.3%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <small>Saque Crypto</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.0003">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <small>Saque BRL</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.9%">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                        <span class="card-text">
-                                                            Taxas
-                                                        </span>
-                                                        <br>
-                                                        <div class="form-row">
-                                                            <div class="col-md-6">
-                                                                <small>Oferta Ativa</small>
-                                                                <div class="input-group input-group-sm">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text" id="basic-addon2">%</span>
-                                                                    </div>
-                                                                    <input type="number" min="1" max="120" class="form-control" placeholder="0.5%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <small>Oferta Passiva</small>
-                                                                <div class="input-group input-group-sm">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text" id="basic-addon2">%</span>
-                                                                    </div>
-                                                                    <input type="number" min="1" max="120" class="form-control" placeholder="0.3%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <small>Saque Crypto</small>
-                                                                <div class="input-group input-group-sm">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text" id="basic-addon2">%</span>
-                                                                    </div>
-                                                                    <input type="number" min="1" max="120" class="form-control" placeholder="0.0003">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <small>Saque BRL</small>
-                                                                <div class="input-group input-group-sm">
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text" id="basic-addon2">%</span>
-                                                                    </div>
-                                                                    <input type="number" min="1" max="120" class="form-control" placeholder="0.9%">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="cotation">
+                            <div class="col-md-4 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Bat Exchange
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>ETH <small class="text-success">(high)</small> </li>
+                                            <li>ETH <small class="text-primary">(last)</small> </li>
+                                            <li>ETH <small class="text-danger">(low)</small> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Tem BTC
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 onMobileNeedSpace">
+                                                
+                                                <ul>
+                                                    <li>ETH <small class="text-success">(high)</small></li>
+                                                    <li>ETH <small class="text-primary">(last)</small></li>
+                                                    <li>ETH <small class="text-danger">(low)</small></li>
+                                                </ul>
+                                                
                                             </div>
-            
+                                            <div class="col-md-6 onMobileNeedSpace">
+                                                
+                                                <ul>
+                                                    <li>BTC <small class="text-success">(high)</small></li>
+                                                    <li>BTC <small class="text-primary">(last)</small></li>
+                                                    <li>BTC <small class="text-danger">(low)</small></li>
+                                                </ul>
+                                                    
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        NegocieCoins
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>BTC <small class="text-success">(high)</small></li>
+                                            <li>BTC <small class="text-primary">(last)</small></li>
+                                            <li>BTC <small class="text-danger">(low)</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row" id="cicle">
                             <div class="col-md-6 onMobileNeedSpace">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-header">
                                         <i class="fal fa-sync float-right ml-2" v-bind:class="{ 'fa-spin': temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
-                                        Tem BTC > NegocieCoins
+                                        Tem 
+                                         <i class="material-icons">
+                                            compare_arrows
+                                         </i> 
+                                        Negocie
                                     </div>
                                     <div class="card-body">
-                                        Probabilidade de passiva: 
-                                        <br><span class="badge badge-secondary">Se ficar verde o <i class="fal fa-chart-line"></i>, existe possibilidade de passiva.</span>
-                                        <br>- (TemBTC) [BTC/BRL] <i class="fal fa-chart-line float-right" v-bind:class="{ 'green': temBtcBrlPassiva }" v-on:click="temBtcBrlPassiva = !temBtcBrlPassiva"></i>
-                                        <br>- (NegocieCoin) [BRL/BTC] > <i class="fal fa-chart-line float-right" v-bind:class="{ 'green': negocieBtcBrlPassiva }" v-on:click="negocieBtcBrlPassiva = !negocieBtcBrlPassiva"></i>
-                                        <br>-
-                                        <hr>
-        
-                                        <small class="font-weight-bold"><i class="far fa-usd-circle"></i></small>
-                                        
-                                        <small>Spread: <span>{{ (negocieBtcBrl_ultimoPreco - temBtcBrl_ultimoPreco) | currencydecimal }}</span></small>
-                                        <br>
-                                        <small class="font-weight-bold"><i class="far fa-clock"></i></small>
-                                        <br>
-                                        <small></small>
-                                        <div class="text-left">
-                                            <br>Valor Pós Ciclo: <span class="float-right">R$ {{ temTotalCicloBREx }}</span>
-                                            <br>Ganho R$: <span class="float-right">R$ {{ temTotalCicloBRExInvestimento }}</span>
-                                            <br>Ganho Percentual: <input type="text" v-model="lucroTemNegocie" disabled class="float-right" style="text-align: right;">
-                                        </div>
+                                        <h6>
+                                            Dados do ciclo
+                                        </h6>
+                                        <ul>
+                                            <li>
+                                                Entrada: 
+                                                <span id="enterTN"></span>
+                                            </li>
+                                            <li>
+                                                Saida: 
+                                                <span id="outTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho BRL:  
+                                                <span id="BrlRewardTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho %:  
+                                                <span id="PercentRewardTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BTC:  
+                                                <span id="BtcTaxTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BRL:  
+                                                <span id="BrlTaxTN"></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -189,47 +291,66 @@
                             <div class="col-md-6">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-header">
-                                            <i class="fal fa-sync float-right ml-2" v-bind:class="{ 'fa-spin': temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
-                                            
-                                        Bat > Tem BTC > NegocieCoins
+                                        <i class="fal fa-sync float-right ml-2" v-bind:class="{ 'fa-spin': temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
+                                        BAT  
+                                         <i class="material-icons">
+                                            compare_arrows
+                                         </i> 
+                                        Tem 
+                                         <i class="material-icons">
+                                            compare_arrows
+                                         </i> 
+                                        Negocie    
                                     </div>
                                     <div class="card-body">
-                                        Probabilidade de passiva:
-                                        <br><span class="badge badge-secondary">Se ficar verde o <i class="fal fa-chart-line"></i>, existe possibilidade de passiva.</span>
-                                        <br>- (Bat Exchange) [BRL/ETH] > <i class="fal fa-chart-line float-right" v-bind:class="{ 'green': batEthBrlPassiva }" v-on:click="batEthBrlPassiva = !batEthBrlPassiva"></i>
-                                        <br>- (TemBTC) [BTC/ETH] > <i class="fal fa-chart-line float-right" v-bind:class="{ 'green': temEthBtcPassiva }" v-on:click="temEthBtcPassiva = !temEthBtcPassiva"></i>
-                                        <br>- (NegocieCoin) [BRL/BTC] > <i class="fal fa-chart-line float-right" v-bind:class="{ 'green': negocieBtcBrlPassiva }" v-on:click="negocieBtcBrlPassiva = !negocieBtcBrlPassiva"></i>
-                                        <hr>
-                                        <small class="font-weight-bold"><i class="far fa-usd-circle"></i></small>
-                                        <small>ETHBTC(Binance) <span>{{ binanceEthBtc_ultimoPreco }}</span></small>
-                                        <br>
-                                        <small class="font-weight-bold"><i class="far fa-usd-circle"></i></small>
-                                        <small>ETHBTC(TemBTC) <span>{{ temEthBtc_ultimoPreco }}</span></small>
-                                        <div class="text-left">
-                                            <br>Valor Pós Ciclo: <span class="float-right">R$ {{ batTotalCicloBREx }}</span>
-                                            <br>Ganho R$: <span class="float-right">R$ {{ batTotalCicloBRExInvestimento}}</span>
-                                            <br>Ganho Percentual: <input type="text" v-model="lucroBatNegocie" disabled class="float-right" style="text-align: right;">
-                                        </div>
+                                        <h6>
+                                            Dados do ciclo
+                                        </h6>
+                                        <ul>
+                                            <li>
+                                                Entrada: 
+                                                <span id="enterBTN"></span>
+                                            </li>
+                                            <li>
+                                                Saida: 
+                                                <span id="outBTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho BRL:  
+                                                <span id="BrlRewardBTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho %:  
+                                                <span id="PercentRewardBTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BTC:  
+                                                <span id="BtcTaxBTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BRL:  
+                                                <span id="BrlTaxBTN"></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row" id="data">
                             <div class="col-md-12">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-header">
                                         Histórico de Preço
                                     </div>
                                     <div class="card-body noBorder inDev">
-                                        Em Desenvolvimento
-                                        <!--iframe src="https://fabricadedinheiro.herokuapp.com/"></iframe-->
+                                        <h3>Em Desenvolvimento</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row" id="donation">
                                 <div class="col-md-12">
                                     <div class="card border-0 shadow-sm">
                                         <div class="card-header">
@@ -240,14 +361,17 @@
                                             <ul>
                                                 <li>BTC: 18Z2HXTN4axPNC6eKBkJE85f6dnDFVfRQu</li>
                                             </ul>
-                                            cyph3rpunks@protonmail.com
+                                            <small>Para pedidos especiais:</small><br>
+                                            cyph3rpunks@protonmail.com<br><br>
+                                            <small>O conhecimento é livre e nosso código também</small><br>
+                                            <a href="https://github.com/Cyph3rPunks/tradebits">Código Trade Bits</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
+                        </div>
+                        <hr>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="chartins">
                         <div class="row mbfix chartsV">
                             <div class="card border-0 shadow-sm col-md-12 noBorder">
                                 <div class="card-header">
@@ -295,39 +419,14 @@
         ])
         .then(
             axios.spread(
-                function (getBatEthBrl, getTemEthBtc, getTemBtcBrl, getNegocieBtcBrl) {
-                    console.log(getBatEthBrl, getTemEthBtc, getTemBtcBrl, getNegocieBtcBrl)
-                    // if (that.batEthBrlUpdate === true) {
-                    //     that.batEthBrl_ultimoPreco = getBatEthBrl.data.last,
-                    //     that.batEthBrl_data = getTime(getBatEthBrl.data.date),
-                    //     that.batEthBrl_maiorPreco = getBatEthBrl.data.high,
-                    //     that.batEthBrl_menorPreco = getBatEthBrl.data.low
-                    // }
-                    // if (that.temEthBtcUpdate === true) {
-                    //     that.temEthBtc_ultimoPreco = getTemEthBtc.data.last,
-                    //     that.temEthBtc_data = getTime(getTemEthBtc.data.date),
-                    //     that.temEthBtc_maiorPreco = getTemEthBtc.data.high,
-                    //     that.temEthBtc_menorPreco = getTemEthBtc.data.low
-                    // }
-                    // if (that.temBtcBrlUpdate === true) {
-                    //     that.temBtcBrl_ultimoPreco = getTemBtcBrl.data.last,
-                    //     that.temBtcBrl_data = getTime(getTemBtcBrl.data.date),
-                    //     that.temBtcBrl_maiorPreco = getTemBtcBrl.data.high,
-                    //     that.temBtcBrl_menorPreco = getTemBtcBrl.data.low
-                    // }
-                    // if (that.negocieBtcBrlUpdate === true) {
-                    //     that.negocieBtcBrl_ultimoPreco = getNegocieBtcBrl.data.last,
-                    //     that.negocieBtcBrl_data = getTime(getNegocieBtcBrl.data.date),
-                    //     that.negocieBtcBrl_maiorPreco = getNegocieBtcBrl.data.high,
-                    //     that.negocieBtcBrl_menorPreco = getNegocieBtcBrl.data.low
-                    // }
-
+                function (DataBatEthBrl, DataTemEthBtc, DataTemBtcBrl, DataNegocieBtcBrl) {
+                    console.log(DataBatEthBrl, DataTemEthBtc, DataTemBtcBrl, DataNegocieBtcBrl)
                 }
             )
         )
         
     </script>
-
+   
     <script>
         var opts =  {
             "timePeriod": "1m",
@@ -360,7 +459,18 @@
     console.log(`Change Trade In View for cryptowatch`)
     console.log(`Improve Performance and Time`)
     </script>
-    
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" rossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        var fix_header_height = 80
 
+        $('.target').click(function () { 
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $($(this).attr('data-scroll')).offset().top - fix_header_height
+            }, 2000);
+            $('.navbar-collapse').collapse('hide');
+        })
+    </script>
 </body>
 </html>

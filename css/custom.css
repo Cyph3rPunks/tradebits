@@ -1,52 +1,12 @@
-.mbfix {
-    margin-bottom: 15px !important;
-}
-
-.cotacao input {
-    width: 65px;
-    font-size: 11px;
-    border: 0;
-}
-
-.roi input {
-    font-size: 21px;
-    text-align: center;
-    border: 0;
-    width: 100px;
-}
-
-.green {
-    color: limegreen;
-}
-
-.red {
-    color: red;
-}
-
-
-/*table tbody, table thead*/
-/*{*/
-    /*display: block;*/
-/*}*/
-/*table tbody*/
-/*{*/
-    /*overflow: auto;*/
-    /*height: 300px;*/
-/*}*/
-
-/*.book-order {*/
-    /*max-height: 300px;*/
-    /*overflow-y: auto;*/
-/*}*/
-
-
-/*table.book-order tbody {*/
-    /*overflow: auto;*/
-    /*height: 500px;*/
-/*}*/
-
 body{
     background-color: #131b15;
+    padding-top: 80px;
+}
+
+body div main .container,
+body nav .container{
+    min-width: 100%;
+    width: 100%;
 }
 
 .logo{
@@ -89,4 +49,29 @@ body{
     background-position: center -240px;
 }
 
-@media (max-width:768px){.onMobileNeedSpace{margin-bottom:20px}}
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.menuOnMobile{
+    display: none;
+}
+
+
+
+@media (max-width:768px){
+    nav.navbar.navbar-expand-md.navbar-light.navbar-laravel {
+        position: fixed;
+        z-index: 999999;
+        left: 0;
+        right: 0;
+    }
+
+    .menuOnMobile{
+        display: block;
+    }
+
+
+    .onMobileNeedSpace{margin-bottom:20px}
+}
