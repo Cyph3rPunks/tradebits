@@ -169,6 +169,12 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
         "time" : new Date()
     }
 
+    Swal.fire({
+        title : 'Nova Versão',
+        html : 'Nesta nova versão do Trade Bits, vocês podem editar os valores de taxas corretamente, para saber exatamente o quanto você vai ganhar em seus giros. <br> Na próxima versão vem a gamificação dos giros e um acompanhamento histórico de valores em cada um de seus ciclos!!!<br> Pode demorar até 15 segundos o primeiro load de dados!',
+        type : 'success'
+    })
+
     $scope.showToast = function (id, title, msg)
     {
         var date = new Date;
