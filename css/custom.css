@@ -38,12 +38,12 @@ body nav .container{
 }
 
 .chartsV .card .card-body {
-    background-image: url('../arbit.gif');
+    background-image: url('../images/tradebit.gif');
     background-size: 70px;
 }
 
 .inDev {
-    background-image: url(../loading.gif);
+    background-image: url(../images/loading.gif);
     height: 170px;
     background-size: cover;
     background-position: center -240px;
@@ -59,11 +59,18 @@ ul {
 }
 
 
+.card-header {
+    background-image: url('../images/pizza.gif');
+    background-size: 36px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) center;
+}
+
 div#updateAlert {
     position: fixed;
     z-index: 9999;
     bottom: 9px;
-    left: 9px;
+    right: 9px;
 }
 
 
