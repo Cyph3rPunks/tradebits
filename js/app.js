@@ -83,30 +83,34 @@ function calculateRewardCicleBTN(axiosData, cicleBTN, config)
     cfOfferPass    = cfOfferPass / 100;
     cfWithdrawFiat = cfWithdrawFiat / 100;
 
-
     var buyedEthereum = (+cfFoundEnter / +axiosData.bat.eth["last"]).toFixed(8);
+    
     var comissionBat = (+buyedEthereum * +cfOfferAct).toFixed(8);
+    
     buyedEthereum = (+buyedEthereum - +comissionBat).toFixed(8);
+    
     buyedEthereum = (+buyedEthereum - +cfWithdrawCrypto).toFixed(8);
-    console.log("Saindo da Bat com: ", buyedEthereum)
-
+    
+    
     var buyedBitcoin = (+axiosData.tem.eth["last"] * +buyedEthereum).toFixed(8);
-    console.log('Posso Comprar tantos BTCS: ', buyedBitcoin)
+    
     var comissionTem = (+buyedBitcoin * +cfOfferAct).toFixed(8);
+    
     buyedBitcoin = (+buyedBitcoin - +comissionTem).toFixed(8);
+    
     buyedBitcoin = (+buyedBitcoin - +cfWithdrawCrypto).toFixed(8);
-    console.log('Saindo da tem com BTCs: ', buyedBitcoin);
-
+    
+    
     var receivedBrl = (+buyedBitcoin * +axiosData.neg.btc["last"]).toFixed(2);
-    console.log('Apos vender os BTC: ', receivedBrl)
+    
     var comissionNeg = (+receivedBrl * +cfOfferAct).toFixed(2);
+    
     receivedBrl = (+receivedBrl - +comissionNeg).toFixed(2);
-    console.log('Apos vender os BTC e pagar taxa: ', receivedBrl)
-    var withdrawTaxBrl = (+receivedBrl * +cfWithdrawFiat).toFixed(2)
-    console.log('Taxa de saque: ', withdrawTaxBrl)
-    var moneyTransferBat = (+receivedBrl - +withdrawTaxBrl).toFixed(2);
-    console.log('Apos vender os BTC: ', moneyTransferBat)
 
+    var withdrawTaxBrl = (+receivedBrl * +cfWithdrawFiat).toFixed(2)
+
+    var moneyTransferBat = (+receivedBrl - +withdrawTaxBrl).toFixed(2);
+    
     let cicle = {
         enterBTN              :   cfFoundEnter,
         BrlRewardBTN          :   (+moneyTransferBat - +cfFoundEnter).toFixed(2),
@@ -215,13 +219,13 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
         $scope.lowBTCNegocieCoins   = AxiosData.neg.btc.low
         
         $scope.cicleTN = calculateRewardCicleTN(AxiosData, $scope.cicleTN, $scope.config);
-        console.log($scope.cicleTN);
+        
         $scope.cicleBTN = calculateRewardCicleBTN(AxiosData, $scope.cicleBTN, $scope.config);
-        console.log($scope.cicleBTN);
+        
 
         if($scope.highETHBat)
         {
-            console.log($scope.highETHBat)
+            
             $scope.showToast("updateAlert", "Up to Date", "Valores de plataformas Atualizados")
         }
         

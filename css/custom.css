@@ -79,3 +79,7 @@ ul {
 img.rounded.mr-2 {
     max-width: 45px;
 }
+
+div#swal2-content {
+    text-align: left;
+}
