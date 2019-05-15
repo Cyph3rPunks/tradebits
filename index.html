@@ -14,10 +14,9 @@
     <meta name="robots" content="index, follow">
     <link href="http://tradebits.exchange" rel="canonical">
 
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    
-    <script src="js/app.js"></script>
     <script src="js/axios.js"></script>
     <script type="text/javascript" src="https://static.cryptowat.ch/assets/scripts/embed.bundle.js"></script>
 
@@ -28,8 +27,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/custom.css" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body ng-app="TradeBits">
+    <div ng-controller="TradeBitsCtrl">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
             <div class="container">
                 <a class="navbar-brand logo" href="index.html">
@@ -81,7 +80,19 @@
                 
             </div>
         </nav>
-
+         <div id="updateAlert" class="toast" style="position: absolute; bottom: 10px; right: 10px; z-index: 9999;" data-autohide="false">
+            <div class="toast-header">
+            <img src="arbit.gif" class="rounded mr-2" alt="Trade Bits">
+            <strong class="mr-auto">{{toastr.title}}</strong>
+            <small>{{toastr.time}}</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="toast-body">
+                {{toastr.msg}}
+            </div>
+        </div>
         <main class="py-4">
             <div class="container" id="app">
                 <div class="row">
@@ -127,7 +138,7 @@
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text" id="basic-addon2">R$</span>
                                                             </div>
-                                                            <input type="number" min="1" max="120" class="form-control" placeholder="10.000,00">
+                                                            <input type="text" ng-model="config.FoundEnter" class="form-control" placeholder="10.000,00" money-mask>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,7 +155,7 @@
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" id="basic-addon2">%</span>
                                                                 </div>
-                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.5%">
+                                                                <input type="text" ng-model="config.OfferAct" class="form-control" placeholder="0.5%" ui-number-mask=>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -153,16 +164,16 @@
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" id="basic-addon2">%</span>
                                                                 </div>
-                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.3%">
+                                                                <input type="text" ng-model="config.OfferPass" class="form-control" placeholder="0.3%" ui-number-mask=>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <small>Saque Crypto</small>
                                                             <div class="input-group input-group-sm">
                                                                 <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                    <span class="input-group-text" id="basic-addon2">0</span>
                                                                 </div>
-                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.0003">
+                                                                <input type="text" ng-model="config.WithdrawCrypto" class="form-control" placeholder="0.0003" ui-number-mask="4">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -171,7 +182,7 @@
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" id="basic-addon2">%</span>
                                                                 </div>
-                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.9%">
+                                                                <input type="text" ng-model="config.WithdrawFiat" class="form-control" placeholder="0.9%" ui-number-mask=>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,9 +202,21 @@
                                     </div>
                                     <div class="card-body">
                                         <ul>
-                                            <li>ETH <small class="text-success">(high)</small> </li>
-                                            <li>ETH <small class="text-primary">(last)</small> </li>
-                                            <li>ETH <small class="text-danger">(low)</small> </li>
+                                            <li class="border-bottom">
+                                                BRL/ETH <small class="float-right text-success">(high)</small>
+                                                <br><span id="highETHBat">{{highETHBat | currency : "R$ " : 2 }}</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                BRL/ETH <small class="float-right text-primary">(last)</small>
+                                                <br><span id="lastETHBat">{{lastETHBat | currency : "R$ " : 2 }}</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                BRL/ETH <small class="float-right text-danger">(low)</small>
+                                                <br><span id="lowETHBat">{{lowETHBat | currency : "R$ " : 2 }}</span>
+                                            
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -205,21 +228,45 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6 onMobileNeedSpace">
+                                            <div class="col-md-6 onMobileNeedSpace border-right">
                                                 
                                                 <ul>
-                                                    <li>ETH <small class="text-success">(high)</small></li>
-                                                    <li>ETH <small class="text-primary">(last)</small></li>
-                                                    <li>ETH <small class="text-danger">(low)</small></li>
+                                                    <li class="border-bottom">
+                                                        BTC/ETH <small class="float-right text-success">(high)</small>
+                                                        <br><span id="highETHTem">{{highETHTem | currency : "" : 8 }}</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        BTC/ETH <small class="float-right text-primary">(last)</small>
+                                                        <br><span id="lastETHTem">{{lastETHTem | currency : "" : 8 }}</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        BTC/ETH <small class="float-right text-danger">(low)</small>
+                                                        <br><span id="lowETHTem">{{lowETHTem | currency : "" : 8 }}</span>
+                                                    
+                                                    </li>
                                                 </ul>
                                                 
                                             </div>
                                             <div class="col-md-6 onMobileNeedSpace">
                                                 
                                                 <ul>
-                                                    <li>BTC <small class="text-success">(high)</small></li>
-                                                    <li>BTC <small class="text-primary">(last)</small></li>
-                                                    <li>BTC <small class="text-danger">(low)</small></li>
+                                                    <li class="border-bottom">
+                                                        BRL/BTC <small class="float-right text-success">(high)</small>
+                                                        <br><span id="highBTCTem">{{highBTCTem | currency : "R$ " : 2 }}</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        BRL/BTC <small class="float-right text-primary">(last)</small>
+                                                        <br><span id="lastBTCTem">{{lastBTCTem | currency : "R$ " : 2 }}</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        BRL/BTC <small class="float-right text-danger">(low)</small>
+                                                        <br><span id="lowBTCTem">{{lowBTCTem | currency : "R$ " : 2 }}</span>
+                                                    
+                                                    </li>
                                                 </ul>
                                                     
                                             </div>
@@ -234,9 +281,21 @@
                                     </div>
                                     <div class="card-body">
                                         <ul>
-                                            <li>BTC <small class="text-success">(high)</small></li>
-                                            <li>BTC <small class="text-primary">(last)</small></li>
-                                            <li>BTC <small class="text-danger">(low)</small></li>
+                                            <li class="border-bottom">
+                                                BRL/BTC <small class="float-right text-success">(high)</small>
+                                                <br><span id="highBTCNegocieCoins">{{highBTCNegocieCoins | currency : "R$ " : 2 }}</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                BRL/BTC <small class="float-right text-primary">(last)</small>
+                                                <br><span id="lastBTCNegocieCoins">{{lastBTCNegocieCoins | currency : "R$ " : 2 }}</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                BRL/BTC <small class="float-right text-danger">(low)</small>
+                                                <br><span id="lowBTCNegocieCoins">{{lowBTCNegocieCoins | currency : "R$ " : 2 }}</span>
+                                            
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -256,32 +315,32 @@
                                     </div>
                                     <div class="card-body">
                                         <h6>
-                                            Dados do ciclo
+                                            <strong>Dados do ciclo</strong>
                                         </h6>
                                         <ul>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Entrada: 
-                                                <span id="enterTN"></span>
+                                                <span class="float-right" id="enterTN">{{cicleTN.enterTN | currency : "R$ " : 2}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Saida: 
-                                                <span id="outTN"></span>
+                                                <span class="float-right" id="outTN">{{cicleTN.outTN | currency : "R$ " : 2}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Ganho BRL:  
-                                                <span id="BrlRewardTN"></span>
+                                                <span class="float-right" id="BrlRewardTN">{{cicleTN.BrlRewardTN | currency : "R$ " : 2}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Ganho %:  
-                                                <span id="PercentRewardTN"></span>
+                                                <span class="float-right" id="PercentRewardTN">{{cicleTN.PercentRewardTN | currency : "" : 4}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Taxa paga BTC:  
-                                                <span id="BtcTaxTN"></span>
+                                                <span class="float-right" id="BtcTaxTN">{{cicleTN.BtcTaxTN | currency : "" : 8}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Taxa paga BRL:  
-                                                <span id="BrlTaxTN"></span>
+                                                <span class="float-right" id="BrlTaxTN">{{cicleTN.BrlTaxTN | currency : "R$ " : 2}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -304,32 +363,36 @@
                                     </div>
                                     <div class="card-body">
                                         <h6>
-                                            Dados do ciclo
+                                            <strong>Dados do ciclo</strong>
                                         </h6>
                                         <ul>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Entrada: 
-                                                <span id="enterBTN"></span>
+                                                <span class="float-right" id="enterBTN">{{cicleBTN.enterBTN | currency : "R$ " : 2}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Saida: 
-                                                <span id="outBTN"></span>
+                                                <span class="float-right" id="outBTN">{{cicleBTN.outBTN | currency : "R$ " : 2}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Ganho BRL:  
-                                                <span id="BrlRewardBTN"></span>
+                                                <span class="float-right" id="BrlRewardBTN">{{cicleBTN.BrlRewardBTN | currency : "R$ " : 2}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Ganho %:  
-                                                <span id="PercentRewardBTN"></span>
+                                                <span class="float-right" id="PercentRewardBTN">{{cicleBTN.PercentRewardBTN | currency : "" : 4}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
+                                                Taxa paga ETH:  
+                                                <span class="float-right" id="EthTaxBTN">{{cicleBTN.EthTaxBTN | currency : "" : 8}}</span>
+                                            </li>
+                                            <li class="border-bottom">
                                                 Taxa paga BTC:  
-                                                <span id="BtcTaxBTN"></span>
+                                                <span class="float-right" id="BtcTaxBTN">{{cicleBTN.BtcTaxBTN | currency : "" : 8}}</span>
                                             </li>
-                                            <li>
+                                            <li class="border-bottom">
                                                 Taxa paga BRL:  
-                                                <span id="BrlTaxBTN"></span>
+                                                <span class="float-right" id="BrlTaxBTN">{{cicleBTN.BrlTaxBTN | currency : "R$ " : 2}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -410,22 +473,6 @@
                
         </main>
     </div>
-    <script>
-        axios.all([
-            axios.get('https://broker.batexchange.com.br/api/v3/ethbrl/ticker'),
-            axios.get('https://broker.tembtc.com.br/api/v3/ethbtc/ticker'),
-            axios.get('https://broker.tembtc.com.br/api/v3/btcbrl/ticker'),
-            axios.get('https://broker.negociecoins.com.br/api/v3/btcbrl/ticker')
-        ])
-        .then(
-            axios.spread(
-                function (DataBatEthBrl, DataTemEthBtc, DataTemBtcBrl, DataNegocieBtcBrl) {
-                    console.log(DataBatEthBrl, DataTemEthBtc, DataTemBtcBrl, DataNegocieBtcBrl)
-                }
-            )
-        )
-        
-    </script>
    
     <script>
         var opts =  {
@@ -449,19 +496,22 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140041838-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'UA-140041838-1');
+        gtag('config', 'UA-140041838-1');
 
-    console.log(`Code Forked from: http://138.219.129.170/dashboard_teste`)
-    console.log(`Change Trade In View for cryptowatch`)
-    console.log(`Improve Performance and Time`)
+        
     </script>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js" rossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src='js/ngMask.min.js'></script>
+    <script src="js/money-mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-input-masks/4.3.0/angular-input-masks-standalone.min.js"></script>
     <script>
         var fix_header_height = 80
 

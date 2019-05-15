@@ -75,3 +75,7 @@ ul {
 
     .onMobileNeedSpace{margin-bottom:20px}
 }
+
+img.rounded.mr-2 {
+    max-width: 45px;
+}
