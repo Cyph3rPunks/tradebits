@@ -59,6 +59,13 @@ ul {
 }
 
 
+div#updateAlert {
+    position: fixed;
+    z-index: 9999;
+    bottom: 9px;
+    left: 9px;
+}
+
 
 @media (max-width:768px){
     nav.navbar.navbar-expand-md.navbar-light.navbar-laravel {
@@ -74,6 +81,13 @@ ul {
 
 
     .onMobileNeedSpace{margin-bottom:20px}
+
+    div#updateAlert {
+        position: fixed;
+        z-index: 9999;
+        bottom: 9px;
+        left: calc(50% - 100px);
+    }
 }
 
 img.rounded.mr-2 {
