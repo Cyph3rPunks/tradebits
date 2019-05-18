@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Trade Bits</title>
+
+    <meta name="description" content="O Trade Bits, tem como foco auxiliar traders a realizarem suas arbitragens de maneira mais simples, informando sobre o mercado externo e capturando dados das exchanges brasileiras, para facilitar o giro entre as Exchanges que fazem parte do Grupo Bitcoin Banco">
+    <meta name="og:title" property="og:title" content="Trade Bits - Dashboard dos Profissionais">
+    <meta name="og:title" property="og:description" content="O Trade Bits, tem como foco auxiliar traders a realizarem suas arbitragens de maneira mais simples, informando sobre o mercado externo e capturando dados das exchanges brasileiras, para facilitar o giro entre as Exchanges que fazem parte do Grupo Bitcoin Banco">
+    <meta property="og:image" content="arbit.gif">
+    <meta property="og:image:type" content="image/gif">
+    <meta name="robots" content="index, follow">
+    <link href="http://tradebits.exchange/" rel="canonical">
+
+
+    <link href="./Trade Bits_files/icon" rel="stylesheet">
+
+    <script type="text/javascript" async="" src="./Trade Bits_files/analytics.js"></script><script src="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/js/axios.js"></script>
+    <script type="text/javascript" src="./Trade Bits_files/embed.bundle.js"></script>
+
+    <link rel="shortcut icon" href="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/arbit.gif" type="image/x-icon">
+    <link rel="icon" href="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/arbit.gif" type="image/x-icon">
+    <link href="./Trade Bits_files/css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./Trade Bits_files/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/css/custom.css" rel="stylesheet">
+</head>
+<body ng-app="TradeBits" class="ng-scope">
+    <div ng-controller="TradeBitsCtrl" class="ng-scope">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+            <div class="container">
+                <a class="navbar-brand logo" href="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/index.html">
+                    <img src="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/arbit.gif" style="width: 45px;">
+                    <span>Trade Bits</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="menuOnMobile">
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a href="unsafe:javascript:void(0)" data-scroll="#config" class="target">
+                                    Configurações
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="unsafe:javascript:void(0)" data-scroll="#cotation" class="target">
+                                    Cotação
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="unsafe:javascript:void(0)" data-scroll="#cicle" class="target">
+                                    Ciclo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="unsafe:javascript:void(0)" data-scroll="#data" class="target">
+                                    Histórico de Preço
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="unsafe:javascript:void(0)" data-scroll="#donation" class="target">
+                                    Doações
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="unsafe:javascript:void(0)" data-scroll="#chartins" class="target">
+                                    Gráficos
+                                </a>
+                            </li>
+                        </ul>
+    
+                        <!-- Right Side Of Navbar -->
+                    </div>
+                </div>
+                
+            </div>
+        </nav>
+         <div id="updateAlert" class="toast fade hide" style="position: absolute; top: 10px; right: 10px; z-index: 9999;" data-autohide="false">
+            <div class="toast-header">
+            <img src="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/arbit.gif" class="rounded" alt="Trade Bits">
+            <strong class="ng-binding">Up to Date</strong>
+            <small class="ng-binding">21:4:56</small>
+            <button type="button" class="close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="toast-body ng-binding">
+                Valores de plataformas Atualizados
+            </div>
+        </div>
+        <main class="py-4">
+            <div class="container" id="app">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Como Usar
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>
+                                                Configure os dados: <br>
+                                                <strong>Entrada de ciclo em BRL</strong>,
+                                                <strong>Taxa Ativa de Operação</strong>,
+                                                <strong>Taxa Passiva de Operação</strong>,
+                                                <strong>Taxa de Saque de Crypto</strong> e
+                                                <strong>Taxa de Saque de Brl</strong>
+
+                                            </li>
+                                            <li>Acompanhe o giro e informe caso o valor de ganho não esteja de acordo!</li>
+                                        </ul>
+                                        <strong> Bons Ganhos! </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="config">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Configurações
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="card-text">
+                                                    Entrada de Ciclo
+                                                </span>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">R$</span>
+                                                            </div>
+                                                            <input type="number" min="1" max="120" class="form-control" placeholder="10.000,00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                    <span class="card-text">
+                                                        Taxas
+                                                    </span>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col-md-6">
+                                                            <small>Oferta Ativa</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.5%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <small>Oferta Passiva</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.3%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <small>Saque Crypto</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.0003">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <small>Saque BRL</small>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                                </div>
+                                                                <input type="number" min="1" max="120" class="form-control" placeholder="0.9%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="cotation">
+                            <div class="col-md-4 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Bat Exchange
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li class="border-bottom">
+                                                ETH <small class="float-right text-success">(high)</small>
+                                                <br><span id="highETHBat" class="ng-binding">R$ 886.47</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                ETH <small class="float-right text-primary">(last)</small>
+                                                <br><span id="lastETHBat" class="ng-binding">R$ 886.47</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                ETH <small class="float-right text-danger">(low)</small>
+                                                <br><span id="lowETHBat" class="ng-binding">R$ 724.08</span>
+                                            
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Tem BTC
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 onMobileNeedSpace border-right">
+                                                
+                                                <ul>
+                                                    <li class="border-bottom">
+                                                        ETH <small class="float-right text-success">(high)</small>
+                                                        <br><span id="highETHTem" class="ng-binding">R$ 0.03</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        ETH <small class="float-right text-primary">(last)</small>
+                                                        <br><span id="lastETHTem" class="ng-binding">R$ 0.03</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        ETH <small class="float-right text-danger">(low)</small>
+                                                        <br><span id="lowETHTem" class="ng-binding">R$ 0.03</span>
+                                                    
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                            <div class="col-md-6 onMobileNeedSpace">
+                                                
+                                                <ul>
+                                                    <li class="border-bottom">
+                                                        BTC <small class="float-right text-success">(high)</small>
+                                                        <br><span id="highBTCTem" class="ng-binding">R$ 33,528.83</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        BTC <small class="float-right text-primary">(last)</small>
+                                                        <br><span id="lastBTCTem" class="ng-binding">R$ 32,308.22</span>
+                                                    
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        BTC <small class="float-right text-danger">(low)</small>
+                                                        <br><span id="lowBTCTem" class="ng-binding">R$ 30,236.00</span>
+                                                    
+                                                    </li>
+                                                </ul>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        NegocieCoins
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li class="border-bottom">
+                                                BTC <small class="float-right text-success">(high)</small>
+                                                <br><span id="highBTCNegocieCoins" class="ng-binding">R$ 34,085.41</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                BTC <small class="float-right text-primary">(last)</small>
+                                                <br><span id="lastBTCNegocieCoins" class="ng-binding">R$ 32,842.47</span>
+                                            
+                                            </li>
+                                            <li class="border-bottom">
+                                                BTC <small class="float-right text-danger">(low)</small>
+                                                <br><span id="lowBTCNegocieCoins" class="ng-binding">R$ 31,500.52</span>
+                                            
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="cicle">
+                            <div class="col-md-6 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        <i class="fal fa-sync float-right ml-2" v-bind:class="{ &#39;fa-spin&#39;: temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
+                                        Tem 
+                                         <i class="material-icons">
+                                            compare_arrows
+                                         </i> 
+                                        Negocie
+                                    </div>
+                                    <div class="card-body">
+                                        <h6>
+                                            Dados do ciclo
+                                        </h6>
+                                        <ul>
+                                            <li>
+                                                Entrada: 
+                                                <span id="enterTN"></span>
+                                            </li>
+                                            <li>
+                                                Saida: 
+                                                <span id="outTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho BRL:  
+                                                <span id="BrlRewardTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho %:  
+                                                <span id="PercentRewardTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BTC:  
+                                                <span id="BtcTaxTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BRL:  
+                                                <span id="BrlTaxTN"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        <i class="fal fa-sync float-right ml-2" v-bind:class="{ &#39;fa-spin&#39;: temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
+                                        BAT  
+                                         <i class="material-icons">
+                                            compare_arrows
+                                         </i> 
+                                        Tem 
+                                         <i class="material-icons">
+                                            compare_arrows
+                                         </i> 
+                                        Negocie    
+                                    </div>
+                                    <div class="card-body">
+                                        <h6>
+                                            Dados do ciclo
+                                        </h6>
+                                        <ul>
+                                            <li>
+                                                Entrada: 
+                                                <span id="enterBTN"></span>
+                                            </li>
+                                            <li>
+                                                Saida: 
+                                                <span id="outBTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho BRL:  
+                                                <span id="BrlRewardBTN"></span>
+                                            </li>
+                                            <li>
+                                                Ganho %:  
+                                                <span id="PercentRewardBTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BTC:  
+                                                <span id="BtcTaxBTN"></span>
+                                            </li>
+                                            <li>
+                                                Taxa paga BRL:  
+                                                <span id="BrlTaxBTN"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="data">
+                            <div class="col-md-12">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Histórico de Preço
+                                    </div>
+                                    <div class="card-body noBorder inDev">
+                                        <h3>Em Desenvolvimento</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="donation">
+                                <div class="col-md-12">
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-header">
+                                            Nos ajudem a continuar evoluindo
+                                        </div>
+                                        <div class="card-body">
+                                            Para continuar evoluindo esta página e manter ela ativa de maneira gratuita a todos, mantemos tudo apenas com doações, se achar que a pagina ajuda!
+                                            <ul>
+                                                <li>BTC: 18Z2HXTN4axPNC6eKBkJE85f6dnDFVfRQu</li>
+                                            </ul>
+                                            <small>Para pedidos especiais:</small><br>
+                                            cyph3rpunks@protonmail.com<br><br>
+                                            <small>O conhecimento é livre e nosso código também</small><br>
+                                            <a href="https://github.com/Cyph3rPunks/tradebits">Código Trade Bits</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-md-6" id="chartins">
+                        <div class="row mbfix chartsV">
+                            <div class="card border-0 shadow-sm col-md-12 noBorder">
+                                <div class="card-header">
+                                    Negocie Reflete
+                                </div>
+                                <div class="card-body noBorder">
+                                    <div id="chart-container" style="height: 300px; width: 100%"><iframe src="./Trade Bits_files/1m.html" frameborder="0" allowfullscreen="true" width="650" height="100%"></iframe></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mbfix chartsV">
+                            <div class="card border-0 shadow-sm col-md-12 noBorder">
+                                <div class="card-header">
+                                    Bat Reflete
+                                </div>
+                                <div class="card-body noBorder">
+                                    <div id="chart-container-ethusdt" style="height: 300px; width: 100%"><iframe src="./Trade Bits_files/1m(1).html" frameborder="0" allowfullscreen="true" width="650" height="100%"></iframe></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mbfix chartsV">
+                            <div class="card border-0 shadow-sm col-md-12 noBorder">
+                                    <div class="card-header">
+                                        Tem Reflete
+                                    </div>
+                                    <div class="card-body noBorder">
+                                        <div id="chart-container-ethbtc" style="height: 300px; width: 100%"><iframe src="./Trade Bits_files/1m(2).html" frameborder="0" allowfullscreen="true" width="650" height="100%"></iframe></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               
+        </div></main>
+    </div>
+   
+    <script>
+        var opts =  {
+            "timePeriod": "1m",
+            "width": 650,
+            "presetColorScheme": "standard"
+        };
+
+        var chart = new cryptowatch.Embed('binance', 'btcusdt',opts);
+
+        var chartETHUSDT = new cryptowatch.Embed('binance', 'ethusdt',opts);
+
+        var chartETHBTC = new cryptowatch.Embed('binance', 'ethbtc',opts);
+
+        chart.mount('#chart-container');
+
+        chartETHUSDT.mount('#chart-container-ethusdt');
+
+        chartETHBTC.mount('#chart-container-ethbtc');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="./Trade Bits_files/js"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-140041838-1');
+
+    console.log(`Code Forked from: http://138.219.129.170/dashboard_teste`)
+    console.log(`Change Trade In View for cryptowatch`)
+    console.log(`Improve Performance and Time`)
+    </script>
+    <script src="./Trade Bits_files/jquery-3.0.0.min.js" rossorigin="anonymous"></script>
+    <script src="./Trade Bits_files/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="./Trade Bits_files/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./Trade Bits_files/angular.min.js"></script>
+    <script src="file:///Users/Gomes/MLZ/Apps/TradeOnFireStatic/js/app.js"></script>
+    <script>
+        var fix_header_height = 80
+
+        $('.target').click(function () { 
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $($(this).attr('data-scroll')).offset().top - fix_header_height
+            }, 2000);
+            $('.navbar-collapse').collapse('hide');
+        })
+    </script>
+
+
+</body></html>
