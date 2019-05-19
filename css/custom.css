@@ -146,7 +146,6 @@ div#swal2-content {
   width: 45px;
 }
 
-
 /* big screen */
 @media screen and (min-width: 1245px) {
 
@@ -159,10 +158,31 @@ div#swal2-content {
 @media screen and (min-width: 630px) and (max-width: 909px) {
 }
 
+
 /* mobile screen */
 @media screen and (max-width: 629px) {
   .bits-logo {
     width: 35px;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  a {
+    color: #2e2f31
+  }
+
+  li {
+    padding: 0.3rem;
+  }
+
+  .card-header {
+    background-image: url(../images/pizza.gif);
+    background-size: 36px;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) center;
   }
 
 }
