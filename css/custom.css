@@ -74,7 +74,31 @@ div#updateAlert {
 }
 
 
-@media (max-width:768px){
+@media (max-width:1366px){
+    #app div .col-md-6.page,
+    #app div .col-md-6.page2 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    #app div .col-md-6.page2 {
+        padding: 30px;
+    }
+
+    div#updateAlert {
+        position: fixed;
+        z-index: 9999;
+        bottom: 9px;
+        left: calc(50% - 175px);
+    }
+
+    .row.mbfix.chartsV {
+        margin-bottom: 70px!important;
+    }
+}
+
+@media (max-width:700px){
     nav.navbar.navbar-expand-md.navbar-light.navbar-laravel {
         position: fixed;
         z-index: 999999;
@@ -93,8 +117,16 @@ div#updateAlert {
         position: fixed;
         z-index: 9999;
         bottom: 9px;
-        left: calc(50% - 100px);
+        left: calc(50% - 175px);
     }
+
+    .row.mbfix.chartsV {
+        margin-bottom: 70px!important;
+    }
+}
+
+#cotation hr {
+    width: 100%;
 }
 
 img.rounded.mr-2 {
@@ -103,4 +135,54 @@ img.rounded.mr-2 {
 
 div#swal2-content {
     text-align: left;
+}
+
+.card-body.noBorder.historyPrices {
+    max-height: 210px;
+    overflow: auto;
+}
+
+.bits-logo {
+  width: 45px;
+}
+
+/* big screen */
+@media screen and (min-width: 1245px) {
+
+}
+/* medium screen */
+@media screen and (min-width: 910px) and (max-width: 1244px) {
+}
+
+/* tablet screen */
+@media screen and (min-width: 630px) and (max-width: 909px) {
+}
+
+
+/* mobile screen */
+@media screen and (max-width: 629px) {
+  .bits-logo {
+    width: 35px;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  a {
+    color: #2e2f31
+  }
+
+  li {
+    padding: 0.3rem;
+  }
+
+  .card-header {
+    background-image: url(../images/pizza.gif);
+    background-size: 36px;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) center;
+  }
+
 }

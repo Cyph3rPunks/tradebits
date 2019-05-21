@@ -1,0 +1,51 @@
+
+<!-- saved from url=(0027)https://www.bootply.com/run -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     
+    <title>TypeError: /app/views/preview.ejs:42&lt;br&gt; &nbsp; &nbsp;40| &nbsp; &nbsp; &nbsp; &nbsp; &lt;script type='text/javascript' src="&lt;%=jq[(opts.jqueryVersion)||"1.10.1"]%&gt;"&gt;&lt;/script&gt;&lt;br&gt; &nbsp; &nbsp;41| &lt;%if (opts.jqueryui==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.jqueryui.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;&lt;br&gt; &gt;&gt; 42| &lt;%if (opts.bootstrapVersion.indexOf("4.")!=-1){%&gt;&lt;script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"&gt;&lt;/script&gt;&lt;%}%&gt;&lt;br&gt; &nbsp; &nbsp;43| &nbsp; &nbsp; &nbsp; &nbsp; &lt;script type='text/javascript' src="&lt;%=bs[(opts.bootstrapVersion)||"4.3.1"].js%&gt;"&gt;&lt;/script&gt;&lt;br&gt; &nbsp; &nbsp;44| &lt;%if (opts.isotope==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.isotope.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;&lt;br&gt; &nbsp; &nbsp;45| &lt;%if (opts.masonry==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.masonry.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;&lt;br&gt;&lt;br&gt;Cannot read property 'indexOf' of undefined</title>
+    <style>* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+body {
+  padding: 80px 100px;
+  font: 13px "Helvetica Neue", "Lucida Grande", "Arial";
+  background: #ECE9E9 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#ECE9E9));
+  background: #ECE9E9 -moz-linear-gradient(top, #fff, #ECE9E9);
+  background-repeat: no-repeat;
+  color: #555;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2 {
+  font-size: 22px;
+  color: #343434;
+}
+h1 em, h2 em {
+  padding: 0 5px;
+  font-weight: normal;
+}
+h1 {
+  font-size: 60px;
+}
+h2 {
+  margin-top: 10px;
+}
+ul li {
+  list-style: none;
+}
+#stacktrace {
+  margin-left: 60px;
+}
+</style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Express</h1>
+      <h2><em>500</em> TypeError: /app/views/preview.ejs:42<br> &nbsp; &nbsp;40| &nbsp; &nbsp; &nbsp; &nbsp; &lt;script type='text/javascript' src="&lt;%=jq[(opts.jqueryVersion)||"1.10.1"]%&gt;"&gt;&lt;/script&gt;<br> &nbsp; &nbsp;41| &lt;%if (opts.jqueryui==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.jqueryui.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;<br> &gt;&gt; 42| &lt;%if (opts.bootstrapVersion.indexOf("4.")!=-1){%&gt;&lt;script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"&gt;&lt;/script&gt;&lt;%}%&gt;<br> &nbsp; &nbsp;43| &nbsp; &nbsp; &nbsp; &nbsp; &lt;script type='text/javascript' src="&lt;%=bs[(opts.bootstrapVersion)||"4.3.1"].js%&gt;"&gt;&lt;/script&gt;<br> &nbsp; &nbsp;44| &lt;%if (opts.isotope==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.isotope.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;<br> &nbsp; &nbsp;45| &lt;%if (opts.masonry==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.masonry.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;<br><br>Cannot read property 'indexOf' of undefined</h2>
+      <ul id="stacktrace"><li> &nbsp; &nbsp;40| &nbsp; &nbsp; &nbsp; &nbsp; &lt;script type='text/javascript' src="&lt;%=jq[(opts.jqueryVersion)||"1.10.1"]%&gt;"&gt;&lt;/script&gt;</li><li> &nbsp; &nbsp;41| &lt;%if (opts.jqueryui==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.jqueryui.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;</li><li> &gt;&gt; 42| &lt;%if (opts.bootstrapVersion.indexOf("4.")!=-1){%&gt;&lt;script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"&gt;&lt;/script&gt;&lt;%}%&gt;</li><li> &nbsp; &nbsp;43| &nbsp; &nbsp; &nbsp; &nbsp; &lt;script type='text/javascript' src="&lt;%=bs[(opts.bootstrapVersion)||"4.3.1"].js%&gt;"&gt;&lt;/script&gt;</li><li> &nbsp; &nbsp;44| &lt;%if (opts.isotope==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.isotope.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;</li><li> &nbsp; &nbsp;45| &lt;%if (opts.masonry==1){%&gt;&lt;script type='text/javascript' src="&lt;%=inc.masonry.js%&gt;"&gt;&lt;/script&gt;&lt;%}%&gt;</li><li></li><li>Cannot read property 'indexOf' of undefined</li><li> &nbsp; &nbsp;at eval (eval at exports.compile (/app/node_modules/ejs-locals/node_modules/ejs/lib/ejs.js:237:14), &lt;anonymous&gt;:30:3844)</li><li> &nbsp; &nbsp;at eval (eval at exports.compile (/app/node_modules/ejs-locals/node_modules/ejs/lib/ejs.js:237:14), &lt;anonymous&gt;:30:8719)</li><li> &nbsp; &nbsp;at /app/node_modules/ejs-locals/node_modules/ejs/lib/ejs.js:250:15</li><li> &nbsp; &nbsp;at Object.exports.render (/app/node_modules/ejs-locals/node_modules/ejs/lib/ejs.js:288:13)</li><li> &nbsp; &nbsp;at Object.exports.renderFile (/app/node_modules/ejs-locals/node_modules/ejs/lib/ejs.js:318:20)</li><li> &nbsp; &nbsp;at View.module.exports [as engine] (/app/node_modules/ejs-locals/index.js:85:7)</li><li> &nbsp; &nbsp;at View.render (/app/node_modules/express/lib/view.js:76:8)</li><li> &nbsp; &nbsp;at Function.app.render (/app/node_modules/express/lib/application.js:518:10)</li><li> &nbsp; &nbsp;at ServerResponse.res.render (/app/node_modules/express/lib/response.js:812:7)</li><li> &nbsp; &nbsp;at /app/server.js:3635:9</li></ul>
+    </div>
+  
+
+</body></html>

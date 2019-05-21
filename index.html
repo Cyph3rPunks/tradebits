@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <title>Trade Bits</title>
     <meta name="description" content="O Trade Bits, tem como foco auxiliar traders a realizarem suas arbitragens de maneira mais simples, informando sobre o mercado externo e capturando dados das exchanges brasileiras, para facilitar o giro entre as Exchanges que fazem parte do Grupo Bitcoin Banco">
 
-    
+
     <meta property="og:image" content="https://repository-images.githubusercontent.com/186548736/592f6f00-75fc-11e9-933d-2f1034f44396" />
     <meta property="og:site_name" content="GitHub" />
     <meta property="og:type" content="object" />
@@ -18,6 +18,7 @@
     <link href="http://tradebits.exchange" rel="canonical">
 
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="js/axios.js"></script>
@@ -35,7 +36,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
             <div class="container">
                 <a class="navbar-brand logo" href="index.html">
-                    <img src="images/tradebit.gif" style="width: 45px;">
+                    <img src="images/tradebit.gif" class="bits-logo">
                     <span>Trade Bits</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,11 +77,11 @@
                                 </a>
                             </li>
                         </ul>
-    
+
                         <!-- Right Side Of Navbar -->
                     </div>
                 </div>
-                
+
             </div>
         </nav>
          <div id="updateAlert" class="toast"  data-autohide="false">
@@ -99,7 +100,129 @@
         <main class="py-4">
             <div class="container" id="app">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 page">
+                        <div class="row" id="data">
+                            <div class="col-md-12">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Histórico de Preço
+                                    </div>
+                                    <div class="card-body noBorder historyPrices">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">Update</th>
+                                                <th scope="col">Bat ETH</th>
+                                                <th scope="col">Tem ETH</th>
+                                                <th scope="col">Tem BTC</th>
+                                                <th scope="col">Neg BTC</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="row in history | reverse">
+                                                <td>{{row.lastUpdate}}</td>
+                                                <td class="{{row.batEthClass}}">{{row.batEth | currency : "" : 2}}</td>
+                                                <td class="{{row.temEthClass}}">{{row.temEth | currency : "" : 4}}</td>
+                                                <td class="{{row.temBtcClass}}">{{row.temBtc | currency : "" : 2}}</td>
+                                                <td class="{{row.negBtcClass}}">{{row.negBtc | currency : "" : 2}}</td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="cicle">
+                            <div class="col-md-6 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Tem
+                                            >
+                                        Negocie
+                                    </div>
+                                    <div class="card-body">
+                                        <h6>
+                                            <strong>Dados do ciclo</strong>
+                                        </h6>
+                                        <ul>
+                                            <li class="border-bottom">
+                                                Entrada:
+                                                <span class="float-right" id="enterTN">{{cicleTN.enterTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Saida:
+                                                <span class="float-right" id="outTN">{{cicleTN.outTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Ganho BRL:
+                                                <span class="float-right" id="BrlRewardTN">{{cicleTN.BrlRewardTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Ganho %:
+                                                <span class="float-right" id="PercentRewardTN">{{cicleTN.PercentRewardTN | currency : "" : 4}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Taxa paga BTC:
+                                                <span class="float-right" id="BtcTaxTN">{{cicleTN.BtcTaxTN | currency : "" : 8}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Taxa paga BRL:
+                                                <span class="float-right" id="BrlTaxTN">{{cicleTN.BrlTaxTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Bat
+                                            >
+                                        Tem
+                                            >
+                                        Neg
+                                    </div>
+                                    <div class="card-body">
+                                        <h6>
+                                            <strong>Dados do ciclo</strong>
+                                        </h6>
+                                        <ul>
+                                            <li class="border-bottom">
+                                                Entrada:
+                                                <span class="float-right" id="enterBTN">{{cicleBTN.enterBTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Saida:
+                                                <span class="float-right" id="outBTN">{{cicleBTN.outBTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Ganho BRL:
+                                                <span class="float-right" id="BrlRewardBTN">{{cicleBTN.BrlRewardBTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Ganho %:
+                                                <span class="float-right" id="PercentRewardBTN">{{cicleBTN.PercentRewardBTN | currency : "" : 4}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Taxa paga ETH:
+                                                <span class="float-right" id="EthTaxBTN">{{cicleBTN.EthTaxBTN | currency : "" : 8}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Taxa paga BTC:
+                                                <span class="float-right" id="BtcTaxBTN">{{cicleBTN.BtcTaxBTN | currency : "" : 8}}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                Taxa paga BRL:
+                                                <span class="float-right" id="BrlTaxBTN">{{cicleBTN.BrlTaxBTN | currency : "R$ " : 2}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row">
                             <div class="col-md-6 onMobileNeedSpace">
                                 <div class="card border-0 shadow-sm">
@@ -141,143 +264,158 @@
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text" id="basic-addon2">R$</span>
                                                             </div>
-                                                            <input type="text" ng-model="config.FoundEnter" class="form-control" placeholder="10.000,00" money-mask>
+                                                            <input type="tel" ng-model="config.FoundEnter" class="form-control" placeholder="10.000,00" ui-number-mask>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                    <span class="card-text">
-                                                        Taxas
-                                                    </span>
-                                                    <br>
-                                                    <div class="form-row">
-                                                        <div class="col-md-6">
-                                                            <small>Oferta Ativa</small>
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">%</span>
-                                                                </div>
-                                                                <input type="text" ng-model="config.OfferAct" class="form-control" placeholder="0.5%" ui-number-mask=>
+                                                <span class="card-text">
+                                                    Taxas
+                                                </span>
+                                                <br>
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <small>Oferta Ativa</small>
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
                                                             </div>
+                                                            <input type="tel" ng-model="config.OfferAct" class="form-control" placeholder="0.5%" ui-number-mask>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <small>Oferta Passiva</small>
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">%</span>
-                                                                </div>
-                                                                <input type="text" ng-model="config.OfferPass" class="form-control" placeholder="0.3%" ui-number-mask=>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <small>Oferta Passiva</small>
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
                                                             </div>
+                                                            <input type="tel" ng-model="config.OfferPass" class="form-control" placeholder="0.3%" ui-number-mask>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <small>Saque Crypto</small>
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">0</span>
-                                                                </div>
-                                                                <input type="text" ng-model="config.WithdrawCrypto" class="form-control" placeholder="0.0003" ui-number-mask="4">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <small>Saque BTC</small>
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">0</span>
                                                             </div>
+                                                            <input type="tel" ng-model="config.WithdrawCrypto" class="form-control" placeholder="0.0003" ui-number-mask="4">
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <small>Saque BRL</small>
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">%</span>
-                                                                </div>
-                                                                <input type="text" ng-model="config.WithdrawFiat" class="form-control" placeholder="0.9%" ui-number-mask=>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <small>Saque ETH</small>
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">0</span>
                                                             </div>
+                                                            <input type="tel" ng-model="config.WithdrawCryptoETH" class="form-control" placeholder="0.0003" ui-number-mask="4">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <small>Saque BRL</small>
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                                            </div>
+                                                            <input type="tel" ng-model="config.WithdrawFiat" class="form-control" placeholder="0.9%" ui-number-mask=>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </div>
-        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div class="row" id="cotation">
-                            <div class="col-md-4 onMobileNeedSpace">
+                            <div class="col-md-6 onMobileNeedSpace">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-header">
-                                        Bat Exchange
+                                        Bat BRL/ETH
                                     </div>
                                     <div class="card-body">
                                         <ul>
                                             <li class="border-bottom">
-                                                BRL/ETH <small class="float-right text-success">(high)</small>
-                                                <br><span id="highETHBat">{{highETHBat | currency : "R$ " : 2 }}</span>
-                                            
+                                                <small class="text-primary">Atual</small>
+                                                <span id="lastETHBat" class="float-right">{{lastETHBat | currency : "R$ " : 2 }}</span>
+                                            </li>
+                                            <li class="border-bottom" ng-show="lastETHBatOld > 0">
+                                                <small class="text-primary">Anterior</small>
+                                                <span id="lastETHBat" class="float-right">{{lastETHBat | currency : "R$ " : 2 }}</span>
                                             </li>
                                             <li class="border-bottom">
-                                                BRL/ETH <small class="float-right text-primary">(last)</small>
-                                                <br><span id="lastETHBat">{{lastETHBat | currency : "R$ " : 2 }}</span>
-                                            
+                                                <i class="fas fa-chevron-circle-up text-success"></i>
+                                                <span id="highETHBat" class="float-right">{{highETHBat | currency : "R$ " : 2 }}</span>
                                             </li>
                                             <li class="border-bottom">
-                                                BRL/ETH <small class="float-right text-danger">(low)</small>
-                                                <br><span id="lowETHBat">{{lowETHBat | currency : "R$ " : 2 }}</span>
-                                            
+                                                <i class="fas fa-chevron-circle-down text-danger"></i>
+                                                <span id="lowETHBat" class="float-right">{{lowETHBat | currency : "R$ " : 2 }}</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 onMobileNeedSpace">
+
+                            <div class="col-md-6 onMobileNeedSpace">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-header">
-                                        Tem BTC
+                                        Tem BTC/ETH
                                     </div>
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-6 onMobileNeedSpace border-right">
-                                                
-                                                <ul>
-                                                    <li class="border-bottom">
-                                                        BTC/ETH <small class="float-right text-success">(high)</small>
-                                                        <br><span id="highETHTem">{{highETHTem | currency : "" : 8 }}</span>
-                                                    
-                                                    </li>
-                                                    <li class="border-bottom">
-                                                        BTC/ETH <small class="float-right text-primary">(last)</small>
-                                                        <br><span id="lastETHTem">{{lastETHTem | currency : "" : 8 }}</span>
-                                                    
-                                                    </li>
-                                                    <li class="border-bottom">
-                                                        BTC/ETH <small class="float-right text-danger">(low)</small>
-                                                        <br><span id="lowETHTem">{{lowETHTem | currency : "" : 8 }}</span>
-                                                    
-                                                    </li>
-                                                </ul>
-                                                
-                                            </div>
-                                            <div class="col-md-6 onMobileNeedSpace">
-                                                
-                                                <ul>
-                                                    <li class="border-bottom">
-                                                        BRL/BTC <small class="float-right text-success">(high)</small>
-                                                        <br><span id="highBTCTem">{{highBTCTem | currency : "R$ " : 2 }}</span>
-                                                    
-                                                    </li>
-                                                    <li class="border-bottom">
-                                                        BRL/BTC <small class="float-right text-primary">(last)</small>
-                                                        <br><span id="lastBTCTem">{{lastBTCTem | currency : "R$ " : 2 }}</span>
-                                                    
-                                                    </li>
-                                                    <li class="border-bottom">
-                                                        BRL/BTC <small class="float-right text-danger">(low)</small>
-                                                        <br><span id="lowBTCTem">{{lowBTCTem | currency : "R$ " : 2 }}</span>
-                                                    
-                                                    </li>
-                                                </ul>
-                                                    
-                                            </div>
-                                        </div>
+                                        <ul>
+                                            <li class="border-bottom">
+                                                <small class="text-primary">Atual</small>
+                                                <span id="lastETHTem" class="float-right">{{lastETHTem | currency : "" : 8 }}</span>
+                                            </li>
+                                            <li class="border-bottom" ng-show="lastETHTemOld > 0">
+                                                <small class="text-primary">Anterior</small>
+                                                <span id="lastETHTemOld" class="float-right">{{lastETHTemOld | currency : "" : 8 }}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                <i class="fas fa-chevron-circle-up text-success"></i>
+                                                <span id="highETHTem" class="float-right">{{highETHTem | currency : "" : 8 }}</span>
+
+                                            </li>
+                                            <li class="border-bottom">
+                                                <i class="fas fa-chevron-circle-down text-danger"></i>
+                                                <span id="lowETHTem" class="float-right">{{lowETHTem | currency : "" : 8 }}</span>
+
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <hr>
+                            <div class="col-md-6 onMobileNeedSpace">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-header">
+                                        Tem BRL/BTC
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li class="border-bottom">
+                                                <small class="text-primary">Atual</small>
+                                                <span id="lastBTCTem" class="float-right">{{lastBTCTem | currency : "R$ " : 2 }}</span>
+                                            </li>
+                                            <li class="border-bottom" ng-show="lastBTCTemOld > 0">
+                                                <small class="text-primary">Anterior</small>
+                                                <span id="lastBTCTem" class="float-right">{{lastBTCTem | currency : "R$ " : 2 }}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                <i class="fas fa-chevron-circle-up text-success"></i>
+                                                <span id="highBTCTem" class="float-right">{{highBTCTem | currency : "R$ " : 2 }}</span>
+                                            </li>
+                                            <li class="border-bottom">
+                                                <i class="fas fa-chevron-circle-down text-danger"></i>
+                                                <span id="lowBTCTem" class="float-right">{{lowBTCTem | currency : "R$ " : 2 }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-header">
                                         NegocieCoins
@@ -285,132 +423,22 @@
                                     <div class="card-body">
                                         <ul>
                                             <li class="border-bottom">
-                                                BRL/BTC <small class="float-right text-success">(high)</small>
-                                                <br><span id="highBTCNegocieCoins">{{highBTCNegocieCoins | currency : "R$ " : 2 }}</span>
-                                            
+                                                <small class="text-primary">Atual</small>
+                                                <span id="lastBTCNegocieCoins" class="float-right">{{lastBTCNegocieCoins | currency : "R$ " : 2 }}</span>
+                                            </li>
+                                            <li class="border-bottom" ng-show="lastBTCNegocieCoinsOld > 0">
+                                                <small class="text-primary">Anterior</small>
+                                                <span id="lastBTCNegocieCoins" class="float-right">{{lastBTCNegocieCoins | currency : "R$ " : 2 }}</span>
                                             </li>
                                             <li class="border-bottom">
-                                                BRL/BTC <small class="float-right text-primary">(last)</small>
-                                                <br><span id="lastBTCNegocieCoins">{{lastBTCNegocieCoins | currency : "R$ " : 2 }}</span>
-                                            
+                                                <i class="fas fa-chevron-circle-up text-success"></i>
+                                                <span id="highBTCNegocieCoins" class="float-right">{{highBTCNegocieCoins | currency : "R$ " : 2 }}</span>
                                             </li>
                                             <li class="border-bottom">
-                                                BRL/BTC <small class="float-right text-danger">(low)</small>
-                                                <br><span id="lowBTCNegocieCoins">{{lowBTCNegocieCoins | currency : "R$ " : 2 }}</span>
-                                            
+                                                <i class="fas fa-chevron-circle-down text-danger"></i>
+                                                <span id="lowBTCNegocieCoins" class="float-right">{{lowBTCNegocieCoins | currency : "R$ " : 2 }}</span>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row" id="cicle">
-                            <div class="col-md-6 onMobileNeedSpace">
-                                <div class="card border-0 shadow-sm">
-                                    <div class="card-header">
-                                        <i class="fal fa-sync float-right ml-2" v-bind:class="{ 'fa-spin': temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
-                                        Tem 
-                                         <i class="material-icons">
-                                            compare_arrows
-                                         </i> 
-                                        Negocie
-                                    </div>
-                                    <div class="card-body">
-                                        <h6>
-                                            <strong>Dados do ciclo</strong>
-                                        </h6>
-                                        <ul>
-                                            <li class="border-bottom">
-                                                Entrada: 
-                                                <span class="float-right" id="enterTN">{{cicleTN.enterTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Saida: 
-                                                <span class="float-right" id="outTN">{{cicleTN.outTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Ganho BRL:  
-                                                <span class="float-right" id="BrlRewardTN">{{cicleTN.BrlRewardTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Ganho %:  
-                                                <span class="float-right" id="PercentRewardTN">{{cicleTN.PercentRewardTN | currency : "" : 4}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Taxa paga BTC:  
-                                                <span class="float-right" id="BtcTaxTN">{{cicleTN.BtcTaxTN | currency : "" : 8}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Taxa paga BRL:  
-                                                <span class="float-right" id="BrlTaxTN">{{cicleTN.BrlTaxTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <div class="card border-0 shadow-sm">
-                                    <div class="card-header">
-                                        <i class="fal fa-sync float-right ml-2" v-bind:class="{ 'fa-spin': temEthBtcUpdate }" v-on:click="temEthBtcUpdate = !temEthBtcUpdate"></i>
-                                        BAT  
-                                         <i class="material-icons">
-                                            compare_arrows
-                                         </i> 
-                                        Tem 
-                                         <i class="material-icons">
-                                            compare_arrows
-                                         </i> 
-                                        Negocie    
-                                    </div>
-                                    <div class="card-body">
-                                        <h6>
-                                            <strong>Dados do ciclo</strong>
-                                        </h6>
-                                        <ul>
-                                            <li class="border-bottom">
-                                                Entrada: 
-                                                <span class="float-right" id="enterBTN">{{cicleBTN.enterBTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Saida: 
-                                                <span class="float-right" id="outBTN">{{cicleBTN.outBTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Ganho BRL:  
-                                                <span class="float-right" id="BrlRewardBTN">{{cicleBTN.BrlRewardBTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Ganho %:  
-                                                <span class="float-right" id="PercentRewardBTN">{{cicleBTN.PercentRewardBTN | currency : "" : 4}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Taxa paga ETH:  
-                                                <span class="float-right" id="EthTaxBTN">{{cicleBTN.EthTaxBTN | currency : "" : 8}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Taxa paga BTC:  
-                                                <span class="float-right" id="BtcTaxBTN">{{cicleBTN.BtcTaxBTN | currency : "" : 8}}</span>
-                                            </li>
-                                            <li class="border-bottom">
-                                                Taxa paga BRL:  
-                                                <span class="float-right" id="BrlTaxBTN">{{cicleBTN.BrlTaxBTN | currency : "R$ " : 2}}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row" id="data">
-                            <div class="col-md-12">
-                                <div class="card border-0 shadow-sm">
-                                    <div class="card-header">
-                                        Histórico de Preço
-                                    </div>
-                                    <div class="card-body noBorder inDev">
-                                        <h3>Em Desenvolvimento</h3>
                                     </div>
                                 </div>
                             </div>
@@ -425,19 +453,36 @@
                                         <div class="card-body">
                                             Para continuar evoluindo esta página e manter ela ativa de maneira gratuita a todos, mantemos tudo apenas com doações, se achar que a pagina ajuda!
                                             <ul>
-                                                <li>BTC: 18Z2HXTN4axPNC6eKBkJE85f6dnDFVfRQu</li>
+                                                <li>
+                                                    <i class="fab fa-btc"></i>
+                                                    <a target="_blank" href="https://www.blockchain.com/btc/address/1C7Nr2RNiTADqbWVrFkc1tLpb4JxmwAmgt">1C7Nr2RNiTADqbWVrFkc1tLpb4JxmwAmgt</a>
+                                                </li>
                                             </ul>
-                                            <small>Para pedidos especiais:</small><br>
-                                            cyph3rpunks@protonmail.com<br><br>
-                                            <small>O conhecimento é livre e nosso código também</small><br>
-                                            <a href="https://github.com/Cyph3rPunks/tradebits">Código Trade Bits</a>
+                                            <hr>
+                                            Para pedidos especiais<br>
+                                            <ul>
+                                                <li>
+                                                    <i class="far fa-envelope-open"></i>
+                                                    cyph3rpunks@protonmail.com
+                                                </li>
+                                            </ul>
+                                            <hr>
+                                            O conhecimento é livre e nosso código também<br>
+                                            <ul>
+                                                <li>
+                                                    <a target="_blank" href="https://github.com/Cyph3rPunks/tradebits">
+                                                        <i class="fab fa-github"></i>
+                                                        Github
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                         </div>
                         <hr>
                     </div>
-                    <div class="col-md-6" id="chartins">
+                    <div class="col-md-6 page2" id="chartins">
                         <div class="row mbfix chartsV">
                             <div class="card border-0 shadow-sm col-md-12 noBorder">
                                 <div class="card-header">
@@ -445,17 +490,6 @@
                                 </div>
                                 <div class="card-body noBorder">
                                     <div id="chart-container" style="height: 300px; width: 100%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row mbfix chartsV">
-                            <div class="card border-0 shadow-sm col-md-12 noBorder" >
-                                <div class="card-header">
-                                    Bat Reflete
-                                </div>
-                                <div class="card-body noBorder">
-                                    <div id="chart-container-ethusdt" style="height: 300px; width: 100%"></div>
                                 </div>
                             </div>
                         </div>
@@ -470,18 +504,30 @@
                                     </div>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row mbfix chartsV">
+                            <div class="card border-0 shadow-sm col-md-12 noBorder" >
+                                <div class="card-header">
+                                    Bat Reflete
+                                </div>
+                                <div class="card-body noBorder">
+                                    <div id="chart-container-ethusdt" style="height: 300px; width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                
-               
+
+
         </main>
     </div>
-   
+
     <script>
         var opts =  {
             "timePeriod": "1m",
-            "width": 650,
-            "presetColorScheme": "standard"
+            "presetColorScheme": "kraken-light",
+            "scrolling": 1
         };
 
         var chart = new cryptowatch.Embed('binance', 'btcusdt',opts);
@@ -505,7 +551,7 @@
 
         gtag('config', 'UA-140041838-1');
 
-        
+
     </script>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js" rossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -519,7 +565,7 @@
     <script>
         var fix_header_height = 80
 
-        $('.target').click(function () { 
+        $('.target').click(function () {
             $([document.documentElement, document.body]).animate({
                 scrollTop: $($(this).attr('data-scroll')).offset().top - fix_header_height
             }, 2000);

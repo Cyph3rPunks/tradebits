@@ -25,7 +25,7 @@ async function runAxios() {
         alert('Something Wrong happen, contact the administrator!')
     }
 
-    
+
 }
 
 function calculateRewardCicleTN(axiosData, cicleTN, config)
@@ -40,21 +40,21 @@ function calculateRewardCicleTN(axiosData, cicleTN, config)
     cfOfferPass    = cfOfferPass / 100;
     cfWithdrawFiat = cfWithdrawFiat / 100;
 
-    var totalBuyedBtc = (+cfFoundEnter / +axiosData.tem.btc["last"]).toFixed(8); 
-    
+    var totalBuyedBtc = (+cfFoundEnter / +axiosData.tem.btc["last"]).toFixed(8);
+
     var comissionTem = (+totalBuyedBtc * +cfOfferAct).toFixed(8);
-    
+
     totalBuyedBtc = (+totalBuyedBtc - +comissionTem).toFixed(8);
-    
+
     totalBuyedBtc = (+totalBuyedBtc - +cfWithdrawCrypto).toFixed(8);
-    
+
 
     var totalReceivedMoney = (+totalBuyedBtc * +axiosData.neg.btc["last"]).toFixed(2);
-    
+
     var comissionNeg = (+totalReceivedMoney * +cfOfferAct).toFixed(2);
-    
+
     totalReceivedMoney = (+totalReceivedMoney - +comissionNeg).toFixed(2);
-    
+
     var withdrawTaxBrl = (+totalReceivedMoney * +cfWithdrawFiat).toFixed(2);
 
     totalReceivedMoney = (+totalReceivedMoney - +withdrawTaxBrl).toFixed(2);
@@ -67,7 +67,7 @@ function calculateRewardCicleTN(axiosData, cicleTN, config)
         BtcTaxTN             :   comissionTem,
         BrlTaxTN             :   comissionNeg
     }
-    
+
     return cicle
 }
 
@@ -78,39 +78,40 @@ function calculateRewardCicleBTN(axiosData, cicleBTN, config)
     var cfOfferPass    = config.OfferPass;
     var cfWithdrawFiat = config.WithdrawFiat;
     var cfWithdrawCrypto = config.WithdrawCrypto;
+    var cfWithdrawCryptoETH = config.WithdrawCryptoETH
 
     cfOfferAct     = cfOfferAct / 100;
     cfOfferPass    = cfOfferPass / 100;
     cfWithdrawFiat = cfWithdrawFiat / 100;
 
     var buyedEthereum = (+cfFoundEnter / +axiosData.bat.eth["last"]).toFixed(8);
-    
+
     var comissionBat = (+buyedEthereum * +cfOfferAct).toFixed(8);
-    
+
     buyedEthereum = (+buyedEthereum - +comissionBat).toFixed(8);
-    
-    buyedEthereum = (+buyedEthereum - +cfWithdrawCrypto).toFixed(8);
-    
-    
+
+    buyedEthereum = (+buyedEthereum - +cfWithdrawCryptoETH).toFixed(8);
+
+
     var buyedBitcoin = (+axiosData.tem.eth["last"] * +buyedEthereum).toFixed(8);
-    
+
     var comissionTem = (+buyedBitcoin * +cfOfferAct).toFixed(8);
-    
+
     buyedBitcoin = (+buyedBitcoin - +comissionTem).toFixed(8);
-    
+
     buyedBitcoin = (+buyedBitcoin - +cfWithdrawCrypto).toFixed(8);
-    
-    
+
+
     var receivedBrl = (+buyedBitcoin * +axiosData.neg.btc["last"]).toFixed(2);
-    
+
     var comissionNeg = (+receivedBrl * +cfOfferAct).toFixed(2);
-    
+
     receivedBrl = (+receivedBrl - +comissionNeg).toFixed(2);
 
     var withdrawTaxBrl = (+receivedBrl * +cfWithdrawFiat).toFixed(2)
 
     var moneyTransferBat = (+receivedBrl - +withdrawTaxBrl).toFixed(2);
-    
+
     let cicle = {
         enterBTN              :   cfFoundEnter,
         BrlRewardBTN          :   (+moneyTransferBat - +cfFoundEnter).toFixed(2),
@@ -120,14 +121,74 @@ function calculateRewardCicleBTN(axiosData, cicleBTN, config)
         BtcTaxBTN             :   comissionTem,
         BrlTaxBTN             :   comissionNeg
     }
-    
+
     return cicle
-    
+
+}
+
+function setHistory(newData, lastData, lastUpdate)
+{
+    const colorText = "text-";
+    const historyObject = {
+        "lastUpdate" : lastUpdate.toLocaleTimeString(),
+        "batEth": 0,
+        "batEthClass": `${colorText}primary`,
+        "temEth": 0,
+        "temEthClass": `${colorText}primary`,
+        "temBtc": 0,
+        "temBtcClass": `${colorText}primary`,
+        "negBtc": 0,
+        "negBtcClass": `${colorText}primary`
+    }
+
+    if(
+        newData.batEth != lastData.batEth
+        || newData.temEth != lastData.temEth
+        || newData.temBtc != lastData.temBtc
+        || newData.netBtc != lastData.netBtc
+      )
+    {
+        historyObject["batEth"] = newData.batEth;
+        historyObject["temEth"] = newData.temEth;
+        historyObject["temBtc"] = newData.temBtc;
+        historyObject["negBtc"] = newData.negBtc;
+
+        if(newData.batEth > lastData.batEth && lastData.batEth != 0 )
+            historyObject["batEthClass"] = `${colorText}success`;
+        if(newData.batEth < lastData.batEth && lastData.batEth != 0 )
+            historyObject["batEthClass"] = `${colorText}danger`;
+
+        if(newData.temEth > lastData.temEth && lastData.temEth != 0 )
+            historyObject["temEthClass"] = `${colorText}success`;
+        if(newData.temEth < lastData.temEth && lastData.temEth != 0 )
+            historyObject["temEthClass"] = `${colorText}danger`;
+
+        if(newData.temBtc > lastData.temBtc && lastData.temBtc != 0 )
+            historyObject["temBtcClass"] = `${colorText}success`;
+        if(newData.temBtc < lastData.temBtc && lastData.temBtc != 0 )
+            historyObject["temBtcClass"] = `${colorText}danger`;
+
+        if(newData.negBtc > lastData.negBtc && lastData.negBtc != 0 )
+            historyObject["negBtcClass"] = `${colorText}success`;
+        if(newData.negBtc < lastData.negBtc && lastData.negBtc != 0 )
+            historyObject["negBtcClass"] = `${colorText}danger`;
+
+        return historyObject;
+    }
+
+    return false;
 }
 
 const app = angular.module('TradeBits', ['ngMask', 'rw.moneymask', 'ui.utils.masks']);
 
+app.filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+});
+
 app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($scope, $interval, $timeout){
+    $scope.lastUpdate           =   new Date();
     $scope.highETHBat           =   0;
     $scope.lastETHBat           =   0;
     $scope.lowETHBat            =   0;
@@ -140,6 +201,13 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
     $scope.highBTCNegocieCoins  =   0;
     $scope.lastBTCNegocieCoins  =   0;
     $scope.lowBTCNegocieCoins   =   0;
+
+    $scope.lastETHBatOld;
+    $scope.highETHTemOld;
+    $scope.lastBTCTemOld;
+    $scope.lastBTCNegocieCoinsOld;
+
+    $scope.history = [];
 
     $scope.cicleTN = {
         enterTN              :   0,
@@ -163,7 +231,8 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
         FoundEnter : 100000,
         OfferAct : 0.5,
         OfferPass : 0.3,
-        WithdrawCrypto : 0.0005,
+        WithdrawCrypto : 0.0003,
+        WithdrawCryptoETH : 0.0001,
         WithdrawFiat : 0.5
     }
 
@@ -173,37 +242,79 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
         "time" : new Date()
     }
 
-    Swal.fire({
-        title : 'Nova Versão',
-        html : 'Nesta nova versão do Trade Bits, vocês podem editar os valores de taxas corretamente, para saber exatamente o quanto você vai ganhar em seus giros. <br> Na próxima versão vem a gamificação dos giros e um acompanhamento histórico de valores em cada um de seus ciclos!!!<br> Pode demorar até 15 segundos o primeiro load de dados!',
-        type : 'success'
-    })
+    if( !localStorage.getItem( 'v4Notification' ) ){
+      let timerInterval
+      Swal.fire({
+          title : 'V4 Liberada',
+          html : 'Vou Fechar em <strong></strong> segundos.<br><br>Finalmente liberamos o acompanhamento de preços!<br>Breve descrição abaixo.<br><strong>Legenda</strong><ul><li class="text-primary">Azul: O Preço se manteve</li><li class="text-success">Verde: O Preço subiu</li><li class="text-danger">Vermelho: O Preço caiu</li></ul><br><br><strong>Importante: </strong>Dados em cache, o histórico de preço funciona apenas em sua sessão e será limpo caso recarregue ou saia da página, então mantenha-se conectado!',
+          type : 'success',
+          onBeforeOpen: () => {
+              Swal.showLoading()
+              timerInterval = setInterval(() => {
+                  Swal.getContent().querySelector('strong')
+                  .textContent = (Swal.getTimerLeft()/60).toFixed(0)
+              }, 100)
+          },
+          onClose: () => {
+              clearInterval(timerInterval)
+          },
+          showConfirmButton: false,
+          customClass: {
+              popup: 'animated tada'
+          },
+          timer: 10000
+      })
 
-    $scope.showToast = function (id, title, msg)
-    {
-        var date = new Date;
-        var seconds = date.getSeconds();
-        var minutes = date.getMinutes();
-        var hour = date.getHours();
-        var FinalDate = `${hour}:${minutes}:${seconds}`
+      $scope.showToast = function (id, title, msg)
+      {
+          var date = new Date;
+          var seconds = date.getSeconds();
+          var minutes = date.getMinutes();
+          var hour = date.getHours();
+          var FinalDate = `${hour}:${minutes}:${seconds}`
 
-        $scope.toastr = {
-            "title" : title,
-            "msg" : msg,
-            "time" : FinalDate 
-        }
-        $timeout(function(){
-            $('#'+id).toast('show')    
-        }, 700)
-        
-        $timeout(function(){  
-            $('#'+id).toast('hide')
-        }, 4600)
+          $scope.toastr = {
+              "title" : title,
+              "msg" : msg,
+              "time" : FinalDate
+          }
+          $timeout(function(){
+              $('#'+id).toast('show')
+          }, 700)
+
+          $timeout(function(){
+              $('#'+id).toast('hide')
+          }, 4600)
+      }
+
+      localStorage.setItem('v4Notification', true);
     }
 
     $scope.loadExchangeData = async function()
     {
         const AxiosData = await runAxios();
+
+        const newData = {
+            "batEth" : AxiosData.bat.eth.last,
+            "temEth" : AxiosData.tem.eth.last,
+            "temBtc" : AxiosData.tem.btc.last,
+            "negBtc" : AxiosData.neg.btc.last
+        }
+        const lastData = {
+            "batEth" : $scope.lastETHBat,
+            "temEth" : $scope.lastETHTem,
+            "temBtc" : $scope.lastBTCTem,
+            "negBtc" : $scope.lastBTCNegocieCoins
+        }
+
+        const history = setHistory(newData, lastData, $scope.lastUpdate)
+
+        if(history)
+        {
+            $scope.showToast("updateAlert", "Up to Date", "Valores de plataformas Atualizados");
+            console.log(history);
+            $scope.history.push(history);
+        }
 
         $scope.highETHBat           = AxiosData.bat.eth.high
         $scope.lastETHBat           = AxiosData.bat.eth.last
@@ -217,25 +328,20 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
         $scope.highBTCNegocieCoins  = AxiosData.neg.btc.high
         $scope.lastBTCNegocieCoins  = AxiosData.neg.btc.last
         $scope.lowBTCNegocieCoins   = AxiosData.neg.btc.low
-        
-        $scope.cicleTN = calculateRewardCicleTN(AxiosData, $scope.cicleTN, $scope.config);
-        
-        $scope.cicleBTN = calculateRewardCicleBTN(AxiosData, $scope.cicleBTN, $scope.config);
-        
 
-        if($scope.highETHBat)
-        {
-            
-            $scope.showToast("updateAlert", "Up to Date", "Valores de plataformas Atualizados")
-        }
-        
+        $scope.cicleTN = calculateRewardCicleTN(AxiosData, $scope.cicleTN, $scope.config);
+
+        $scope.cicleBTN = calculateRewardCicleBTN(AxiosData, $scope.cicleBTN, $scope.config);
+
+        $scope.lastUpdate           =   new Date();
+
     }
 
     $interval(async function(){
         await $scope.loadExchangeData()
     }, 15000)
-    
-        
+
+
 }]);
 
 

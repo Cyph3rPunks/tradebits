@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://www.bootply.com/pre -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         
+        
+        <title>Bootstrap Canvas</title>
+        
+        <link href="./bootstrap.min(2).css" rel="stylesheet" id="bsLink">
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+
+
+
+
+
+
+
+
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <style>
+        html,body {
+            height:100%;
+            overflow:auto;
+        }
+        
+        #dropCanvas [class*="span"].ui-draggable {
+            /*border:1px dashed #bbb;*/
+            background-color:#F7F7F7;
+          	min-height:30px;
+            border-collapse:collapse;
+        }
+        
+        #dropCanvas .row, #dropCanvas .row-fluid {
+            /*border:1px dashed #ddd;*/
+          	min-height:30px;
+        }
+        
+        #dropCanvas .container {
+            border:1px dotted #e3e3e3;
+            min-height:93%;
+        }
+        
+        #dropCanvas .container:hover {
+            border:1px dotted #dedede;
+        }
+        
+        .hang {
+            background-color:#F7F7F7;
+            border-radius:4px;
+        	font-size:11px;
+        	left:1px;
+        	padding:5px;
+        	position:absolute;
+        	top:1px;
+            opacity:.8;
+            z-index:-1;
+            display:none;
+        }
+        
+        #dropCanvas {
+        	height:100%;
+            width:100%;
+            /*position:relative;*/
+            background-image:url('/css/images/gridx72l.png');
+            background-position: center center;
+            background-repeat;repeat-y;
+            overflow:visible;
+        }
+        
+        .droppedHover {
+            border:1px inset #22DD22 !important;
+          	border-collapse:collapse;
+        }
+        
+        .dropped:active {
+            cursor:grab;
+            cursor:-webkit-grab;
+        }
+        
+        .droppedSelected,.droppedSelected:hover {
+          	border:2px inset #0000BB !important;
+          	/*position:relative;*/
+          	z-index:1199;
+        }
+        
+        .target {
+            background-image:url('/css/images/gr_dot.png');
+            background-position: center center;
+            opacity:.6;
+        }
+        
+        .ui-draggable-dragging {
+            cursor:grab;
+            cursor:-webkit-grab;
+            background-color:#33cc33;
+        }
+        
+        .ui-draggable-dragging.item div {
+            color:#000;
+        }
+        
+        .ui-state-disabled {
+            opacity:1;
+        }
+        </style>
+        <style type="text/css" id="bsCss">
+        /* override bootstrap styles */
+        
+        </style>
+    </head>
+    <body>
+        <div id="dropCanvas"></div>
+        
+        <script type="text/javascript" src="./jquery.min.js"></script>
+    
+    
+        <script type="text/javascript" src="./bootstrap.min(3).js"></script>
+    
+    
+    
+        <script type="text/javascript" id="bsJs">
+        
+        $(document).ready(function() {
+        
+            
+        
+        });
+        
+        </script>
+    
+</body></html>
