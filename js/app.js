@@ -22,7 +22,7 @@ async function runAxios() {
     }
     catch (e)
     {
-        alert('Something Wrong happen, contact the administrator!')
+        console.log('Something Wrong happen, contact the administrator!');
     }
 
 
@@ -265,29 +265,29 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
           timer: 10000
       })
 
-      $scope.showToast = function (id, title, msg)
-      {
-          var date = new Date;
-          var seconds = date.getSeconds();
-          var minutes = date.getMinutes();
-          var hour = date.getHours();
-          var FinalDate = `${hour}:${minutes}:${seconds}`
-
-          $scope.toastr = {
-              "title" : title,
-              "msg" : msg,
-              "time" : FinalDate
-          }
-          $timeout(function(){
-              $('#'+id).toast('show')
-          }, 700)
-
-          $timeout(function(){
-              $('#'+id).toast('hide')
-          }, 4600)
-      }
-
       localStorage.setItem('v4Notification', true);
+    }
+
+    $scope.showToast = function (id, title, msg)
+    {
+        var date = new Date;
+        var seconds = date.getSeconds();
+        var minutes = date.getMinutes();
+        var hour = date.getHours();
+        var FinalDate = `${hour}:${minutes}:${seconds}`
+
+        $scope.toastr = {
+            "title" : title,
+            "msg" : msg,
+            "time" : FinalDate
+        }
+        $timeout(function(){
+            $('#'+id).toast('show');
+        }, 700)
+
+        $timeout(function(){
+            $('#'+id).toast('hide');
+        }, 4600)
     }
 
     $scope.loadExchangeData = async function()
@@ -345,6 +345,7 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
 }]);
 
 
+}]);
 
 app.directive('format', ['$filter', function ($filter) {
     return {
