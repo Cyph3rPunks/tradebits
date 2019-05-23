@@ -344,9 +344,6 @@ app.controller('TradeBitsCtrl', ['$scope', '$interval', '$timeout', function($sc
 
 }]);
 
-
-}]);
-
 app.directive('format', ['$filter', function ($filter) {
     return {
         require: '?ngModel',
